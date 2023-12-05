@@ -5,8 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -15,7 +13,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import lib.Lang;
 import model.Bookshelf;
 
@@ -66,7 +63,7 @@ public class Main extends Application
 
 		Group titleBar = new Group(subtitle, getButtonGroup());
 
-		StackPane content = getContent(mainStage);
+		StackPane content = getContent();
 
 		Group root = new Group(titleBar, content);
 		Scene scene = new Scene(root);
@@ -76,12 +73,10 @@ public class Main extends Application
 		mainStage.setHeight(Config.WINDOW_HEIGHT);
 		mainStage.setResizable(false);
 
-		mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			@Override
-			public void handle(WindowEvent t) {
-				Platform.exit();
-				System.exit(0);
-			}
+		mainStage.setOnCloseRequest(t ->
+		{
+			Platform.exit();
+			System.exit(0);
 		});
 	}
 
@@ -92,25 +87,17 @@ public class Main extends Application
 		Button createBookshelfButton = new Button(Lang.getInstance().getMessage("MAIN_WINDOW_ADD_NEW_BOOKSHELF"));
 		createBookshelfButton.setLayoutX(700);
 		createBookshelfButton.setLayoutY(40);
-		createBookshelfButton.setOnAction(new EventHandler<ActionEvent>()
+		createBookshelfButton.setOnAction(actionEvent ->
 		{
-			@Override
-			public void handle(ActionEvent actionEvent)
-			{
 
-			}
 		});
 
 		Button saveBookshelfButton = new Button(Lang.getInstance().getMessage("MAIN_WINDOW_SAVE_BOOKSHELF"));
 		saveBookshelfButton.setLayoutX(600);
 		saveBookshelfButton.setLayoutY(40);
-		saveBookshelfButton.setOnAction(new EventHandler<ActionEvent>()
+		saveBookshelfButton.setOnAction(actionEvent ->
 		{
-			@Override
-			public void handle(ActionEvent actionEvent)
-			{
-				// TODO: сохранение данных
-			}
+			// TODO: сохранение данных
 		});
 
 		buttonGroup.getChildren().add(createBookshelfButton);
@@ -119,7 +106,7 @@ public class Main extends Application
 		return buttonGroup;
 	}
 
-	private StackPane getContent(Stage stage)
+	private StackPane getContent()
 	{
 		pagination.setPageFactory(this::getPage);
 		pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
