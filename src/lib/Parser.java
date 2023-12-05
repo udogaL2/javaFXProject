@@ -6,9 +6,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
-
-import static lib.Lang.print;
 
 public class Parser
 {
@@ -17,28 +14,6 @@ public class Parser
     public static int parseRawStringToInt(String rowString)
     {
         return Integer.parseInt(rowString);
-    }
-
-	public static String getUserStringWhileIsNotValid(boolean isNumber)
-	{
-		return getUserStringWhileIsNotValid(isNumber, 256);
-	}
-
-    public static String getUserStringWhileIsNotValid(boolean isNumber, int maxLen)
-    {
-		Scanner inScanner = new Scanner(System.in);
-		while (true)
-        {
-			print(Lang.getInstance().getMessage("APPLICATION_USER_INPUT"), true);
-			String command = inScanner.nextLine();
-
-            if (Validator.isStringValid(command, maxLen) && (!isNumber || Validator.isNumeric(command) >= 0))
-            {
-                return command;
-            }
-
-            print(Lang.getInstance().getMessage("APPLICATION_COMMAND_IS_NOT_VALID"));
-        }
     }
 
 	public static String parseDateToString(Date date)

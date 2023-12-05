@@ -27,6 +27,9 @@ public class Lang
 
 	private void init()
 	{
+		this.messageList.put("MAIN_WINDOW_TITLE", "LitLab - личная библиотека");
+		this.messageList.put("MAIN_WINDOW_SUBTITLE", "Список книжных библиотек");
+		this.messageList.put("MAIN_WINDOW_ADD_NEW_BOOKSHELF", "Создать");
 	}
 
 	public String getMessage(String messageCode)
