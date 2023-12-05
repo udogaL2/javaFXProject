@@ -1,27 +1,32 @@
 package model;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 
 public class Bookshelf
 {
-	private final int id;
-	private String title;
-	private final ArrayList<Book> bookList = new ArrayList<>();
+	private final SimpleIntegerProperty id;
+	private final SimpleStringProperty title;
+	private final ObservableList<Book> bookList = FXCollections.observableArrayList();
 
 	public Bookshelf(int id, String title)
 	{
-		this.id = id;
-		this.title = title;
+		this.id = new SimpleIntegerProperty(id);
+		this.title = new SimpleStringProperty(title);
 	}
 
 	public String getTitle()
 	{
-		return title;
+		return title.get();
 	}
 
 	public void setTitle(String title)
 	{
-		this.title = title;
+		this.title.set(title);
 	}
 
 	public void addBook(Book book)
@@ -29,13 +34,13 @@ public class Bookshelf
 		bookList.add(book);
 	}
 
-	public ArrayList<Book> getBookList()
+	public ObservableList<Book> getBookList()
 	{
 		return bookList;
 	}
 
 	public int getId()
 	{
-		return id;
+		return id.get();
 	}
 }

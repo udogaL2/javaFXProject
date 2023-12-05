@@ -1,90 +1,91 @@
 package model;
 
-import java.util.Date;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 public class Book
 {
-	private final int id;
-	private String title;
-	private String description;
-	private Date publicationYear;
-	private String ISBN;
-	private String authors;
-	private String genres;
+	private final SimpleIntegerProperty id;
+	private final SimpleStringProperty title;
+	private final SimpleStringProperty description;
+	private final SimpleStringProperty publicationYear;
+	private final SimpleStringProperty ISBN;
+	private final SimpleStringProperty authors;
+	private final SimpleStringProperty genres;
 
-	public Book(int id, String title, String description, Date publicationYear, String ISBN, String authors, String genres)
+	public Book(int id, String title, String description, String publicationYear, String ISBN, String authors, String genres)
 	{
-		this.id = id;
-		this.title = title;
-		this.description = description;
-		this.publicationYear = publicationYear;
-		this.ISBN = ISBN;
-		this.authors = authors;
-		this.genres = genres;
+		this.id = new SimpleIntegerProperty(id);
+		this.title = new SimpleStringProperty(title);
+		this.description = new SimpleStringProperty(description);
+		this.publicationYear = new SimpleStringProperty(publicationYear);
+		this.ISBN = new SimpleStringProperty(ISBN);
+		this.authors = new SimpleStringProperty(authors);
+		this.genres = new SimpleStringProperty(genres);
 	}
 
 	public String getTitle()
 	{
-		return title;
+		return title.get();
 	}
 
 	public void setTitle(String title)
 	{
-		this.title = title;
+		this.title.set(title);
 	}
 
 	public String getDescription()
 	{
-		return description;
+		return description.get();
 	}
 
 	public void setDescription(String description)
 	{
-		this.description = description;
+		this.description.set(description);
 	}
 
-	public Date getPublicationYear()
+	public String getPublicationYear()
 	{
-		return publicationYear;
+		return publicationYear.get();
 	}
 
-	public void setPublicationYear(Date publicationYear)
+	public void setPublicationYear(String publicationYear)
 	{
-		this.publicationYear = publicationYear;
+		this.publicationYear.set(publicationYear);
 	}
 
 	public String getISBN()
 	{
-		return ISBN;
+		return ISBN.get();
 	}
 
 	public void setISBN(String ISBN)
 	{
-		this.ISBN = ISBN;
+		this.ISBN.set(ISBN);
 	}
 
 	public String getAuthors()
 	{
-		return authors;
+		return authors.get();
 	}
 
 	public void setAuthors(String authors)
 	{
-		this.authors = authors;
+		this.authors.set(authors);
 	}
 
 	public String getGenres()
 	{
-		return genres;
+		return genres.get();
 	}
 
 	public void setGenres(String genres)
 	{
-		this.genres = genres;
+		this.genres.set(genres);
 	}
 
 	public int getId()
 	{
-		return id;
+		return id.get();
 	}
 }
