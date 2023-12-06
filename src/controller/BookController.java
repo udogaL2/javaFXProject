@@ -3,8 +3,6 @@ package controller;
 import model.Book;
 import model.SerializableBook;
 
-import java.util.Date;
-
 public class BookController
 {
 	public static Book createNewBook(int id, String title, String description, String publicationYear, String ISBN, String authors, String genres)

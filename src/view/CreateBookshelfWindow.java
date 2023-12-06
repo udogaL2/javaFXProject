@@ -12,7 +12,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lib.Lang;
 import lib.Validator;
-import model.Bookshelf;
 
 public class CreateBookshelfWindow
 {

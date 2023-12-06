@@ -3,7 +3,6 @@ package view;
 import config.Config;
 import controller.BookshelfController;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;

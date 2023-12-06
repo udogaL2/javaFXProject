@@ -4,7 +4,6 @@ import controller.BookshelfController;
 import javafx.scene.control.*;
 import lib.Lang;
 import model.Book;
-import model.Bookshelf;
 import view.MainWindow;
 
 import java.util.Optional;

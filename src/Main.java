@@ -1,4 +1,3 @@
-import controller.BookshelfController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import view.MainWindow;

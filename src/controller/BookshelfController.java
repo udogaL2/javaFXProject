@@ -3,7 +3,6 @@ package controller;
 import config.Config;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import model.Book;
 import model.Bookshelf;
 import model.SerializableBook;
