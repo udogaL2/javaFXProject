@@ -1,11 +1,10 @@
-import controller.BookshelfController;
-import javafx.collections.ObservableList;
+package view.component;
+
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import lib.Lang;
 import model.Bookshelf;
-
-import java.util.Optional;
+import view.BookshelfDetailWindow;
 
 public class DetailButtonCell extends TableCell<Bookshelf, Void>
 {

@@ -29,7 +29,7 @@ public class Lang
 	{
 		this.messageList.put("MAIN_WINDOW_TITLE", "LitLab - личная библиотека");
 		this.messageList.put("MAIN_WINDOW_SUBTITLE", "Список книжных полок");
-		this.messageList.put("MAIN_WINDOW_ADD_NEW_BOOKSHELF", "Создать");
+		this.messageList.put("MAIN_WINDOW_ADD_NEW", "Создать");
 		this.messageList.put("MAIN_WINDOW_SAVE_BOOKSHELF", "Сохранить");
 		this.messageList.put("MAIN_WINDOW_BOOKSHELF_ID", "ID");
 		this.messageList.put("MAIN_WINDOW_BOOKSHELF_TITLE", "Название");
@@ -41,6 +41,23 @@ public class Lang
 		this.messageList.put("MAIN_WINDOW_BOOKSHELF_DELETE_POPUP_CANCEL", "Закрыть");
 		this.messageList.put("MAIN_WINDOW_BOOKSHELF_DETAIL_TITLE", "Детальная страница книжной полки");
 		this.messageList.put("MAIN_WINDOW_BOOKSHELF_DETAIL_SUBTITLE", "Список книг");
+		this.messageList.put("MAIN_WINDOW_BOOKSHELF_SAVE", "Сохранение книжных полок");
+		this.messageList.put("MAIN_WINDOW_BOOKSHELF_SAVE_SUCCESSFULLY", "Книжные полки успешно сохранены");
+		this.messageList.put("MAIN_WINDOW_BOOKSHELF_SAVE_UNSUCCESSFULLY", "Произошла ошибка при сохранении книжных полок");
+		this.messageList.put("MAIN_WINDOW_BOOKSHELF_EMPTY_STATE", "Информации о книжных полках нет");
+		this.messageList.put("MAIN_WINDOW_BOOKSHELF_CREATE", "Создать новую книжную полку");
+		this.messageList.put("MAIN_WINDOW_BOOKSHELF_CREATION", "Создание книжной полки");
+		this.messageList.put("MAIN_WINDOW_BOOKSHELF_CREATE_SUCCESSFULLY", "Новая книжная полка успешно создана");
+		this.messageList.put("MAIN_WINDOW_BOOKSHELF_CREATE_UNSUCCESSFULLY", "Ошибка, введены некорректные данные");
+
+		this.messageList.put("MAIN_WINDOW_BOOK_ID", "ID");
+		this.messageList.put("MAIN_WINDOW_BOOK_TITLE", "Название");
+		this.messageList.put("MAIN_WINDOW_BOOK_DESCRIPTION", "Описание");
+		this.messageList.put("MAIN_WINDOW_BOOK_YEAR", "Год");
+		this.messageList.put("MAIN_WINDOW_BOOK_ISBN", "ISBN");
+		this.messageList.put("MAIN_WINDOW_BOOK_AUTHORS", "Автор");
+		this.messageList.put("MAIN_WINDOW_BOOK_GENRES", "Жанр");
+		this.messageList.put("MAIN_WINDOW_BOOK_EMPTY_STATE", "Информации о книгах нет");
 	}
 
 	public String getMessage(String messageCode)

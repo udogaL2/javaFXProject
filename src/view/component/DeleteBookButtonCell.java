@@ -1,20 +1,22 @@
+package view.component;
+
 import controller.BookshelfController;
-import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import lib.Lang;
+import model.Book;
 import model.Bookshelf;
+import view.MainWindow;
 
 import java.util.Optional;
 
-public class DeleteButtonCell extends TableCell<Bookshelf, Void>
+public class DeleteBookButtonCell extends TableCell<Book, Void>
 {
 	private final Button deleteButton = new Button(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_DELETE"));
 
-	DeleteButtonCell(TableView<Bookshelf> tableView)
+	DeleteBookButtonCell(TableView<Book> tableView)
 	{
 		deleteButton.setMinWidth(75);
 		deleteButton.setMaxWidth(75);
-
 		deleteButton.setOnAction(event -> {
 			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 			alert.setTitle(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_DELETE_POPUP_TITLE") + " " + getTableRow().getItem().getTitle());
@@ -32,12 +34,13 @@ public class DeleteButtonCell extends TableCell<Bookshelf, Void>
 
 			if (result.get() == confirmButton)
 			{
-				BookshelfController.deleteBookshelfById(Main.bookshelfList, getTableRow().getItem().getId());
+				BookshelfController.deleteBookshelfById(MainWindow.bookshelfList, getTableRow().getItem().getId());
 
-				Main.updatePagination();
+				MainWindow.updatePagination();
 			}
 		});
 	}
+
 
 	@Override
 	protected void updateItem(Void item, boolean empty)
