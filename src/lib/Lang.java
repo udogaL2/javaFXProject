@@ -84,20 +84,4 @@ public class Lang
 
 		return this.messageList.get(messageCode);
 	}
-
-	public static void print(String message)
-	{
-		System.out.println(message);
-	}
-
-	public static void print(String message, boolean isOnSameLine)
-	{
-		if (isOnSameLine)
-		{
-			System.out.print(message);
-			return;
-		}
-
-		System.out.println(message);
-	}
 }
