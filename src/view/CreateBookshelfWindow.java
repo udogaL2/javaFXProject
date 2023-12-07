@@ -45,6 +45,7 @@ public class CreateBookshelfWindow
 		Scene scene = new Scene(content);
 
 		createBookshelfStage.setScene(scene);
+		createBookshelfStage.setTitle(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_CREATION"));
 		createBookshelfStage.setWidth(Config.WINDOW_WIDTH);
 		createBookshelfStage.setHeight(Config.WINDOW_HEIGHT / 2);
 		createBookshelfStage.setResizable(false);
@@ -62,20 +63,20 @@ public class CreateBookshelfWindow
 		saveBookshelfButton.setOnAction(actionEvent -> {
 			String title = titleTextField.getText();
 
-			boolean result = Validator.isStringValid(title, 256);
-
-			MainWindow.bookshelfList.add(BookshelfController.createNewBookshelf(title));
+			boolean result = Validator.isStringValid(title, 50);
 
 			Alert alert = new Alert(result ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR);
 			alert.setTitle(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_CREATION"));
 			alert.setHeaderText(null);
-			String contentText = result ? Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_CREATE_SUCCESSFULLY") : Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_SAVE_UNSUCCESSFULLY");
+			String contentText = result ? Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_CREATE_SUCCESSFULLY") : Lang.getInstance().getMessage("MAIN_WINDOW_CREATE_UNSUCCESSFULLY");
 			alert.setContentText(contentText);
 
 			alert.showAndWait();
 
 			if (result)
 			{
+				MainWindow.bookshelfList.add(BookshelfController.createNewBookshelf(title));
+
 				MainWindow.updatePagination();
 				createBookshelfStage.close();
 			}
@@ -90,7 +91,7 @@ public class CreateBookshelfWindow
 	{
 		Group textFieldGroup = new Group();
 
-		Text titleText = new Text("Название книжной полки");
+		Text titleText = new Text(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_CREATE_TITLE"));
 		titleText.setLayoutX(50);
 		titleText.setLayoutY(134);
 

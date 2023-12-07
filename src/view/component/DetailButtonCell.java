@@ -16,7 +16,8 @@ public class DetailButtonCell extends TableCell<Bookshelf, Void>
 		deleteButton.setMaxWidth(95);
 
 		deleteButton.setOnAction(event -> {
-			Stage newWindow = BookshelfDetailWindow.getStage(getTableRow().getItem());
+			Bookshelf b = getTableRow().getItem();
+			Stage newWindow = BookshelfDetailWindow.getStage(b);
 
 			newWindow.show();
 		});

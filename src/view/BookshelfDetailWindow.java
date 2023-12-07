@@ -20,9 +20,10 @@ public class BookshelfDetailWindow
 {
 	public static Stage bookshelfDetailStage = null;
 
-	public final static Pagination pagination = new Pagination();
+	public static Bookshelf bookshelf = null;
 
-	public static ObservableList<Book> bookList = null;
+	public static Pagination pagination;
+
 
 	public static Stage getStage(Bookshelf bookshelf)
 	{
@@ -31,7 +32,7 @@ public class BookshelfDetailWindow
 			bookshelfDetailStage = new Stage();
 		}
 
-		BookshelfDetailWindow.bookList = bookshelf.getBookList();
+		BookshelfDetailWindow.bookshelf = bookshelf;
 
 		prepareStage();
 
@@ -40,7 +41,7 @@ public class BookshelfDetailWindow
 
 	private static void prepareStage()
 	{
-		Text subtitle = new Text(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_CREATE"));
+		Text subtitle = new Text(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_DETAIL_TITLE") + " " + bookshelf.getTitle());
 		subtitle.setFont(new Font(20));
 		subtitle.setLayoutX(50);
 		subtitle.setLayoutY(60);
@@ -53,9 +54,12 @@ public class BookshelfDetailWindow
 		Scene scene = new Scene(root);
 
 		bookshelfDetailStage.setScene(scene);
+		bookshelfDetailStage.setTitle(bookshelf.getTitle());
 		bookshelfDetailStage.setWidth(Config.WINDOW_WIDTH);
 		bookshelfDetailStage.setHeight(Config.WINDOW_HEIGHT);
 		bookshelfDetailStage.setResizable(false);
+		bookshelfDetailStage.setX(MainWindow.mainStage.getX() + 50);
+		bookshelfDetailStage.setY(MainWindow.mainStage.getY() + 50);
 	}
 
 	private static Group getButtonGroup()
@@ -65,9 +69,8 @@ public class BookshelfDetailWindow
 		Button createBookButton = new Button(Lang.getInstance().getMessage("MAIN_WINDOW_ADD_NEW"));
 		createBookButton.setLayoutX(700);
 		createBookButton.setLayoutY(40);
-		createBookButton.setOnAction(actionEvent ->
-		{
-
+		createBookButton.setOnAction(actionEvent -> {
+			CreateBookWindow.getStage(bookshelf).show();
 		});
 
 		buttonGroup.getChildren().add(createBookButton);
@@ -77,6 +80,8 @@ public class BookshelfDetailWindow
 
 	private static StackPane getContent()
 	{
+		pagination = new Pagination();
+
 		pagination.setPageFactory(BookshelfDetailWindow::getPage);
 		pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
 		pagination.setMaxPageIndicatorCount(5);
@@ -94,12 +99,14 @@ public class BookshelfDetailWindow
 
 	private static Group getPage(int pageIndex)
 	{
+		ObservableList<Book> bookList = BookshelfDetailWindow.bookshelf.getBookList();
+
 		FilteredList<Book> filteredData = new FilteredList<>(
-				bookList,
-				book -> (
-					bookList.indexOf(book) < (pageIndex + 1) * Config.MAX_ITEMS_COUNT
-					&& bookList.indexOf(book) >= pageIndex * Config.MAX_ITEMS_COUNT
-				)
+			bookList,
+			book -> (
+				bookList.indexOf(book) < (pageIndex + 1) * Config.MAX_ITEMS_COUNT
+				&& bookList.indexOf(book) >= pageIndex * Config.MAX_ITEMS_COUNT
+			)
 		);
 		SortedList<Book> sortedData = new SortedList<>(filteredData);
 
@@ -112,7 +119,7 @@ public class BookshelfDetailWindow
 
 	public static void updatePagination()
 	{
-		int pageCount = bookList.size() / 12 + (bookList.size() % 12 == 0 ? 0 : 1);
+		int pageCount = bookshelf.getBookList().size() / 12 + (bookshelf.getBookList().size() % 12 == 0 ? 0 : 1);
 
 		pagination.setPageCount(pageCount != 0 ? pageCount : 1);
 	}

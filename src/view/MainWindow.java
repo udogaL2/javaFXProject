@@ -96,7 +96,7 @@ public class MainWindow
 			Alert alert = new Alert(result ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR);
 			alert.setTitle(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_SAVE"));
 			alert.setHeaderText(null);
-			String contentText = result ? Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_SAVE_SUCCESSFULLY") : Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_CREATE_UNSUCCESSFULLY");
+			String contentText = result ? Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_SAVE_SUCCESSFULLY") : Lang.getInstance().getMessage("MAIN_WINDOW_CREATE_UNSUCCESSFULLY");
 			alert.setContentText(contentText);
 
 			alert.showAndWait();

@@ -22,8 +22,8 @@ public class DeleteBookshelfButtonCell extends TableCell<Bookshelf, Void>
 			alert.setTitle(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_DELETE_POPUP_TITLE") + " " + getTableRow().getItem().getTitle());
 			alert.setHeaderText(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_DELETE_POPUP_DESCRIPTION"));
 
-			ButtonType confirmButton = new ButtonType(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_DELETE_POPUP_CONFIRM"), ButtonBar.ButtonData.YES);
-			ButtonType cancelButton = new ButtonType(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_DELETE_POPUP_CANCEL"), ButtonBar.ButtonData.CANCEL_CLOSE);
+			ButtonType confirmButton = new ButtonType(Lang.getInstance().getMessage("MAIN_WINDOW_DELETE_POPUP_CONFIRM"), ButtonBar.ButtonData.YES);
+			ButtonType cancelButton = new ButtonType(Lang.getInstance().getMessage("MAIN_WINDOW_DELETE_POPUP_CANCEL"), ButtonBar.ButtonData.CANCEL_CLOSE);
 
 			alert.getButtonTypes().clear();
 			alert.getButtonTypes().addAll(confirmButton, cancelButton);

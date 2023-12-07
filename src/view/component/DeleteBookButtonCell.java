@@ -1,9 +1,11 @@
 package view.component;
 
+import controller.BookController;
 import controller.BookshelfController;
 import javafx.scene.control.*;
 import lib.Lang;
 import model.Book;
+import view.BookshelfDetailWindow;
 import view.MainWindow;
 
 import java.util.Optional;
@@ -18,11 +20,11 @@ public class DeleteBookButtonCell extends TableCell<Book, Void>
 		deleteButton.setMaxWidth(75);
 		deleteButton.setOnAction(event -> {
 			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-			alert.setTitle(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_DELETE_POPUP_TITLE") + " " + getTableRow().getItem().getTitle());
-			alert.setHeaderText(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_DELETE_POPUP_DESCRIPTION"));
+			alert.setTitle(Lang.getInstance().getMessage("MAIN_WINDOW_BOOK_DELETE_POPUP_TITLE") + " " + getTableRow().getItem().getTitle());
+			alert.setHeaderText(Lang.getInstance().getMessage("MAIN_WINDOW_BOOK_DELETE_POPUP_DESCRIPTION"));
 
-			ButtonType confirmButton = new ButtonType(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_DELETE_POPUP_CONFIRM"), ButtonBar.ButtonData.YES);
-			ButtonType cancelButton = new ButtonType(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_DELETE_POPUP_CANCEL"), ButtonBar.ButtonData.CANCEL_CLOSE);
+			ButtonType confirmButton = new ButtonType(Lang.getInstance().getMessage("MAIN_WINDOW_DELETE_POPUP_CONFIRM"), ButtonBar.ButtonData.YES);
+			ButtonType cancelButton = new ButtonType(Lang.getInstance().getMessage("MAIN_WINDOW_DELETE_POPUP_CANCEL"), ButtonBar.ButtonData.CANCEL_CLOSE);
 
 			alert.getButtonTypes().clear();
 			alert.getButtonTypes().addAll(confirmButton, cancelButton);
@@ -33,9 +35,9 @@ public class DeleteBookButtonCell extends TableCell<Book, Void>
 
 			if (result.get() == confirmButton)
 			{
-				BookshelfController.deleteBookshelfById(MainWindow.bookshelfList, getTableRow().getItem().getId());
+				BookController.deleteBookById(BookshelfDetailWindow.bookshelf.getBookList(), getTableRow().getItem().getId());
 
-				MainWindow.updatePagination();
+				BookshelfDetailWindow.updatePagination();
 			}
 		});
 	}
