@@ -81,9 +81,11 @@ public class CreateBookWindow
 
 			boolean result =
 				Validator.isStringValid(title, 100)
-				&& Validator.isStringValid(description, 200)
+				&& Validator.isStringValid(description, 250)
 				&& Validator.isStringValid(publicationYear, 5)
+				&& Validator.isNumeric(publicationYear)
 				&& Validator.isStringValid(ISBN, 15)
+				&& Validator.isNumeric(ISBN)
 				&& Validator.isStringValid(authors, 60)
 				&& Validator.isStringValid(genres, 60)
 			;

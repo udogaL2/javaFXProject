@@ -3,6 +3,7 @@ package view;
 import config.Config;
 import controller.BookshelfController;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -22,9 +23,12 @@ import lib.Validator;
 import model.Bookshelf;
 import view.component.BookshelfTable;
 
+import java.io.File;
+import java.io.IOException;
+
 public class MainWindow
 {
-	public static ObservableList<Bookshelf> bookshelfList;
+	public static ObservableList<Bookshelf> bookshelfList = FXCollections.observableArrayList();
 
 	public final static Pagination pagination = new Pagination();
 
@@ -39,6 +43,17 @@ public class MainWindow
 			if (Validator.isFileExists(Config.PATH_TO_SAVE))
 			{
 				bookshelfList = BookshelfController.unserialize();
+			}
+			else
+			{
+				try
+				{
+					Validator.createFile();
+				}
+				catch (IOException e)
+				{
+					throw new RuntimeException(e);
+				}
 			}
 
 			prepareStage();
@@ -93,13 +108,8 @@ public class MainWindow
 		saveBookshelfButton.setLayoutY(40);
 		saveBookshelfButton.setOnAction(actionEvent -> {
 			boolean result = BookshelfController.serialize(bookshelfList);
-			Alert alert = new Alert(result ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR);
-			alert.setTitle(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_SAVE"));
-			alert.setHeaderText(null);
-			String contentText = result ? Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_SAVE_SUCCESSFULLY") : Lang.getInstance().getMessage("MAIN_WINDOW_CREATE_UNSUCCESSFULLY");
-			alert.setContentText(contentText);
 
-			alert.showAndWait();
+			saveAlert(result);
 		});
 
 		buttonGroup.getChildren().add(createBookshelfButton);
@@ -148,5 +158,16 @@ public class MainWindow
 		int pageCount = bookshelfList.size() / 12 + (bookshelfList.size() % 12 == 0 ? 0 : 1);
 
 		pagination.setPageCount(pageCount != 0 ? pageCount : 1);
+	}
+
+	private static void saveAlert(boolean result)
+	{
+		Alert alert = new Alert(result ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR);
+		alert.setTitle(Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_SAVE"));
+		alert.setHeaderText(null);
+		String contentText = result ? Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_SAVE_SUCCESSFULLY") : Lang.getInstance().getMessage("MAIN_WINDOW_BOOKSHELF_SAVE_UNSUCCESSFULLY");
+		alert.setContentText(contentText);
+
+		alert.showAndWait();
 	}
 }
